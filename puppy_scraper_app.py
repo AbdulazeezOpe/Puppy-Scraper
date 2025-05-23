@@ -156,19 +156,39 @@ def extract_listing_info(driver, url):
     }
 
 
-def run_scraper(city, email, password):
+def run_scraper(city, email, password, report_to=None):
     driver = start_driver()
     login(driver, email, password)
+
+    # After login
+    if report_to:
+        report_to.write("✅ Logged in successfully.")
+    time.sleep(3)
     apply_filters(driver, city)
+    time.sleep(5)
+
+    if report_to:
+        report_to.info(f"🔎 Searching listings for {city}...")
+    
     links = get_listing_links(driver)
+
+    # After links are collected
+    if report_to:
+        report_to.success(f"🔗 Found {len(links)} listings. Scraping details now...")
+    time.sleep(3)
     all_data = []
     for i, link in enumerate(links, 1):
+        if report_to:
+            report_to.write(f"🔎 Scraping listing {i}/{len(links)}...")
+
         try:
             data = extract_listing_info(driver, link)
             all_data.append(data)
         except Exception as e:
             print(f"Failed on {link}: {e}")
             continue
+    if report_to:
+        report_to.success(f"✅ Scraped {len(all_data)} listings. Ready to download!")
 
     df = pd.DataFrame(all_data)
     output_file = f"puppies_{city.replace(',', '').replace(' ', '_')}.csv"
