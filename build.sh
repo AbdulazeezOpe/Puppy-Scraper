@@ -10,3 +10,6 @@ mv chrome-linux64 ~/.chrome/chrome
 
 # Set binary path in environment (important!)
 echo 'export GOOGLE_CHROME_BIN=$HOME/.chrome/chrome/chrome' >> ~/.profile
+# ✅ Debugging: confirm environment file content
+echo "🔍 Checking RENDER_ENV_FILE path: $RENDER_ENV_FILE"
+cat $RENDER_ENV_FILE
