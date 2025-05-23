@@ -8,8 +8,12 @@ unzip -o chrome-linux64.zip  # overwrite if already exists
 rm -rf ~/.chrome/chrome
 mv chrome-linux64 ~/.chrome/chrome
 
-# Set binary path in environment (important!)
-echo 'export GOOGLE_CHROME_BIN=$HOME/.chrome/chrome/chrome' >> ~/.profile
+
+# ✅ Export Chrome binary path to environment
+echo "GOOGLE_CHROME_BIN=$HOME/.chrome/chrome/chrome" >> $RENDER_ENV_FILE
+
+
+
 # ✅ Debugging: confirm environment file content
 echo "🔍 Checking RENDER_ENV_FILE path: $RENDER_ENV_FILE"
 cat $RENDER_ENV_FILE
