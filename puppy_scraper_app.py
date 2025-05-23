@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
 import re
+import os
 
 
 def start_driver():
