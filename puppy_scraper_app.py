@@ -35,7 +35,11 @@ def start_driver():
 def login(driver, email, password):
     driver.get('https://puppies.com/sign-in')
     time.sleep(5)
-    
+
+    if "403 Forbidden" in driver.page_source:
+        print(f"🚫 403 Forbidden at {driver.current_url}")
+        return None  # or handle as needed
+
     WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Accept']"))).click()
 
