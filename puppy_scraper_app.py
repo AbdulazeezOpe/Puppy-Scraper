@@ -27,7 +27,7 @@ def start_driver():
 
 
     driver = uc.Chrome(options=options)
-    driver.maximize_window()
+    #driver.maximize_window()
     return driver
 
 
