@@ -2,6 +2,13 @@ import streamlit as st
 from puppy_scraper_app import run_scraper
 import os
 
+
+
+
+# Forcefully export the path again (as a safeguard)
+os.environ["GOOGLE_CHROME_BIN"] = os.path.expanduser("~/.chrome/chrome/chrome")
+
+
 st.set_page_config(page_title="Puppies.com Scraper", page_icon="🐶")
 st.title("🐾 Puppies.com Breeder Contact Scraper")
 
