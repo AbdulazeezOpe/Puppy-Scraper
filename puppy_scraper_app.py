@@ -16,11 +16,11 @@ def start_driver():
     options = webdriver.ChromeOptions()
      # ✅ Required for headless on Render
     
-    
-     # Ensure the binary path is a string
-    chrome_bin = os.getenv("GOOGLE_CHROME_BIN") or "/opt/render/project/.chrome/chrome/chrome"
-    if not os.path.exists(chrome_bin):
-        raise FileNotFoundError(f"Chrome binary not found at {chrome_bin}")
+    chrome_path = "/home/render/.chrome/chrome/chrome"  # not getenv, just direct
+
+    if not os.path.exists(chrome_path):
+        raise FileNotFoundError(f"❌ Chrome binary not found at {chrome_path}")
+
     
     options.binary_location = chrome_bin
     options.add_argument("--headless=new")
