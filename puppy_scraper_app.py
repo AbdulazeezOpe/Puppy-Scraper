@@ -1,5 +1,5 @@
 
-import undetected_chromedriver as uc
+#import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -13,27 +13,24 @@ import os
 
 
 def start_driver():
-    options = webdriver.ChromeOptions()
-     # ✅ Required for headless on Render
+ 
     
-    chrome_path = "/home/render/.chrome/chrome/chrome"  # not getenv, just direct
+    
+    chrome_path = "/home/render/.chrome/chrome/chrome"
 
     if not os.path.exists(chrome_path):
         raise FileNotFoundError(f"❌ Chrome binary not found at {chrome_path}")
-
     
-    options.binary_location = chrome_bin
+    options = webdriver.ChromeOptions()
+    options.binary_location = chrome_path
     options.add_argument("--headless=new")
-    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.188 Safari/537.36')
 
-
-    driver = uc.Chrome(options=options)
-    driver.set_page_load_timeout(30)
+    driver = webdriver.Chrome(options=options)
+    
     #driver.maximize_window()
     return driver
 
