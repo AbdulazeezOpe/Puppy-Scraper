@@ -15,7 +15,7 @@ import os
 def start_driver():
     options = webdriver.ChromeOptions()
      # ✅ Required for headless on Render
-    options.binary_location = os.getenv("GOOGLE_CHROME_BIN", "/opt/render/project/.render/chrome/opt/google/chrome/chrome")
+    options.binary_location = os.getenv("GOOGLE_CHROME_BIN")
     options.add_argument("--headless=new")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
