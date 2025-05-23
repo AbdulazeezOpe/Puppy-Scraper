@@ -13,19 +13,17 @@ import re
 
 def start_driver():
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless=new')  # Important: use new headless mode
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-gpu')  # Mostly for Windows environments
-    options.add_argument('--window-size=1920,1080')
-    options.add_argument('--disable-images')  # Optional for speed
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--ignore-ssl-errors')
+     # ✅ Required for headless on Render
+    options.binary_location = os.getenv("GOOGLE_CHROME_BIN", "/opt/render/project/.render/chrome/opt/google/chrome/chrome")
+    options.add_argument("--headless=new")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080")
+
     options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--disable-javascript')  # Optional if site allows
-    
-    # User-agent
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.188 Safari/537.36')
+
 
     driver = uc.Chrome(options=options)
     driver.maximize_window()
