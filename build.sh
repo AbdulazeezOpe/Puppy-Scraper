@@ -17,3 +17,5 @@ echo "GOOGLE_CHROME_BIN=$HOME/.chrome/chrome/chrome" >> $RENDER_ENV_FILE
 # ✅ Debugging: confirm environment file content
 echo "🔍 Checking RENDER_ENV_FILE path: $RENDER_ENV_FILE"
 cat $RENDER_ENV_FILE
+
+echo 'export GOOGLE_CHROME_BIN=$HOME/.chrome/chrome/chrome' >> ~/.profile
